@@ -34,16 +34,16 @@ command_exists() {
 }
 
 # because bash does not support floating-point math
-# but awk does
+# but /usr/bin/original-awk does
 calc() {
   local stdin;
   read -d '' -u 0 stdin;
-  awk "BEGIN { print $stdin }";
+  /usr/bin/original-awk "BEGIN { print $stdin }";
 }
 
-# "<" math operator which works with floats, once again based on awk
+# "<" math operator which works with floats, once again based on /usr/bin/original-awk
 fcomp() {
-  awk -v n1="$1" -v n2="$2" 'BEGIN {if (n1<n2) exit 0; exit 1}'
+  /usr/bin/original-awk -v n1="$1" -v n2="$2" 'BEGIN {if (n1<n2) exit 0; exit 1}'
 }
 
 # get_mem_usage* function returns values in KiB

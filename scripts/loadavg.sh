@@ -17,7 +17,7 @@ get_num_of_cores(){
 main(){ 
   local num_cores=$([ "$loadavg_per_cpu_core" == "true" ]  && get_num_of_cores || echo 1)
 
-  uptime | awk -v num_cores="$num_cores" '{ 
+  uptime | /usr/bin/original-awk -v num_cores="$num_cores" '{ 
     sub(/,$/, "", $(NF-2));
     sub(/,$/, "", $(NF-1));
     sub(/,$/, "", $NF);
